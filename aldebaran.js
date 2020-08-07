@@ -1,7 +1,7 @@
 /*
- * Library Name : Aldebaranjs
+ * Library Name	: Aldebaranjs
  * Author 			: MrSyhd
- * Github 			: https://github.com/syahidnurrohim
+ * Github 			: https://github.com/syahidnurrohim/aldebaran
  * License			:
  *
  */
@@ -96,7 +96,28 @@ const Aldebaran = (function(e) {
 			return str
 		},
 		/**
-		 * Get Cookie, receive any stored cookie in the document
+		 * Get Cookies, receive any stored cookie in the document
+		 *
+		 * @return 
+		 */
+		get_cookies: function() {
+			const c = document.cookie
+			const arr_c = c.split("; ")
+			const obj = {}
+			return arr_c.map((d, i) => {
+				const spr = d.split("=")
+				if (i = 0) {
+					const s = spr[0].split(" ");
+					s.shift()
+					s.join(" ");
+					s[0] = s
+				}
+				merge(obj, {[spr[0]]: spr[1]})
+			})
+			return obj
+		},
+		/**
+		 * Get Cookie, receive a stored cookie in the document
 		 *
 		 * @param string
 		 * @return string
