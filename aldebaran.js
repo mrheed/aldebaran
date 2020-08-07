@@ -1,7 +1,8 @@
 /*
  * Library Name : Aldebaranjs
- * Author 		: MrSyhd
- * Github 		: https://github.com/syahidnurrohim
+ * Author 			: MrSyhd
+ * Github 			: https://github.com/syahidnurrohim
+ * License			:
  *
  */
 
