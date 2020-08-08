@@ -1,15 +1,24 @@
 class Builder {
 
-	constructor(modules, baseurl = window.location.pathname) {
-		this.modules = []
-		this.baseurl = baseurl
-		this.modules.push(modules)
+	constructor(modules, aseeturl = window.location.pathname) {
+		this.modules = ["aldebaran"]
+		this.aseeturl =aseeturl 
+		modules && this.modules.push(modules)
 	}
 
+	/**
+	 * List, get existing module
+	 * @return Array
+	 */
 	get list() {
 		return this.modules
 	}
 
+	/**
+	 * ModuleError, throw error module
+	 * @param string, string
+	 * @return error
+	 */
 	moduleError(type, module) {
 		switch(type) {
 			case 'type':
@@ -20,6 +29,11 @@ class Builder {
 		}
 	}
 
+	/**
+	 * Add, insert module to module list
+	 * @param string | Array
+	 * @return void
+	 */
 	add(modules) {
 		if (modules instanceof Array) {
 			for (let i = 0; i < modules.length; i++) {
@@ -32,6 +46,11 @@ class Builder {
 		this.modules.push(modules)
 	}
 
+	/**
+	 * Remove, delete specified module
+	 * @param string | Array
+	 * @return void
+	 */
 	remove(modules) {
 		this.modules = this.modules.filter(m => {
 			if (modules instanceof Array) {
@@ -45,15 +64,29 @@ class Builder {
 		})
 	}
 
+	/**
+	 * OnlyUse, change module list to given modules in parameter
+	 * @param string | Array
+	 * @return instance
+	 */
 	onlyUse(modules) {
 		this.reset()
 		this.modules.push(modules)
+		return this
 	}
 
+	/**
+	 * Reset, remove all modules in the list
+	 * @return void
+	 */
 	reset() {
 		this.modules = []
 	}
 
+	/**
+	 * Register, call all modules to HTML DOM
+	 * @return void
+	 */
 	register() {
 		const body = document.getElementsByTagName("body").item(0)
 		for (let i = 0; i < this.modules.length; i++) {
@@ -64,3 +97,7 @@ class Builder {
 	}
 
 }
+
+window.onloadstart = function() {
+	window.ModuleBuilder = new Builder()
+}()

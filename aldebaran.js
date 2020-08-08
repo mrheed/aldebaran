@@ -104,7 +104,7 @@ const Aldebaran = (function(e) {
 			const c = document.cookie
 			const arr_c = c.split("; ")
 			const obj = {}
-			return arr_c.map((d, i) => {
+			return arr_c.filter(d => !!d).map((d, i) => {
 				const spr = d.split("=")
 				if (i = 0) {
 					const s = spr[0].split(" ");
@@ -112,9 +112,8 @@ const Aldebaran = (function(e) {
 					s.join(" ");
 					s[0] = s
 				}
-				merge(obj, {[spr[0]]: spr[1]})
+				return {[spr[0]]: spr[1]}
 			})
-			return obj
 		},
 		/**
 		 * Get Cookie, receive a stored cookie in the document
