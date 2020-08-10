@@ -1,8 +1,9 @@
 class Builder {
 
-	constructor(modules, aseeturl = window.location.pathname) {
+	constructor(modules, assets_url = window.location.pathname) {
+		this.primaryModules = ["repository"]
 		this.modules = ["aldebaran"]
-		this.aseeturl =aseeturl 
+		this.assets_url = assets_url 
 		modules && this.modules.push(modules)
 	}
 
@@ -11,7 +12,7 @@ class Builder {
 	 * @return Array
 	 */
 	get list() {
-		return this.modules
+		return [this.modules, this.primaryModules].flat()
 	}
 
 	/**
@@ -76,7 +77,7 @@ class Builder {
 	}
 
 	/**
-	 * Reset, remove all modules in the list
+	 * Reset, empty entire module list
 	 * @return void
 	 */
 	reset() {
@@ -84,14 +85,15 @@ class Builder {
 	}
 
 	/**
-	 * Register, call all modules to HTML DOM
+	 * Register, call modules to HTML DOM
 	 * @return void
 	 */
-	register() {
+	register(type = "optional") {
 		const body = document.getElementsByTagName("body").item(0)
-		for (let i = 0; i < this.modules.length; i++) {
+		var modules = type === "primary" ? this.primaryModules : this.modules
+		for (let i = 0; i < modules.length; i++) {
 			const script = document.createElement('script')
-			script.setAttribute('src', [[this.modules[i], 'js'].join('.')].join('/'))
+			script.setAttribute('src', [[modules[i], 'js'].join('.')].join('/'))
 			body.appendChild(script)
 		}
 	}
@@ -100,4 +102,5 @@ class Builder {
 
 window.onloadstart = function() {
 	window.ModuleBuilder = new Builder()
+	window.ModuleBuilder.register("primary")
 }()

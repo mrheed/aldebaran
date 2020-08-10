@@ -7,6 +7,7 @@
  */
 
 const Aldebaran = (function(e) {
+	"use strict"
 	/**
 	 * Raise, throw an exception with optional condition
 	 * 
@@ -133,11 +134,11 @@ const Aldebaran = (function(e) {
 		 * @return promise
 		 */
 		fetch: function(o) {
-			options = {
+			const options = {
 				method: 'GET',
 				url: "",
 				headers: {},
-				body: null,
+				body: {},
 				withCredentials: false,
 				onProgress: function(e) {},
 				onSuccess: function(response) {},
