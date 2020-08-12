@@ -1,8 +1,8 @@
 class Builder {
 
 	constructor(modules, assets_url = window.location.pathname) {
-		this.primaryModules = ["repository"]
-		this.modules = ["aldebaran"]
+		this.primaryModules = ["repository", "dom"]
+		this.modules = ["aldebaran", "table"]
 		this.assets_url = assets_url 
 		modules && this.modules.push(modules)
 	}

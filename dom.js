@@ -6,7 +6,7 @@ const DOM = function(elm) {
 	}
 }
 
-const DOMParser = function() {
+const TEST_DOMParser = function() {
 	"use strict"
 	var DOMParser_proto = DOMParser.prototype;
 	var real_parseFromString = DOMParser_proto.parseFromString;
